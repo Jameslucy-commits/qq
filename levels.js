@@ -72,3 +72,61 @@ levelAdd('office_with_meeting', function(K) {
     "pantry_corner": [19, -4.5]    // 會議室角落冰箱微波爐區
   }, "entrance-meeting_room meeting_room-pantry_corner meeting_room-boss_seat");
 });
+
+levelAdd('office_with_meeting', function(K) {
+  const { T, M, box, flat, desk, nodes, bounds, block, plate, screen } = K;
+
+  bounds(-12, 22, -12, 12);
+
+  block([
+    [-8, -2, -6, 6],   
+    [-1, 5, -6, 6],    
+    [6, 12, -6, 6],    
+    [-10, 10, -9, -7.5], 
+    [-2, 0, 1, 3],     
+    [3, 5, 2, 4],      
+
+    [14, 19, -5, 5],   
+    [13, 21, -7, -6],  
+    [13, 21, 6, 7],    
+    [20, 21, -5, 5]    
+  ]);
+
+  flat(34, 24, M.office, 5, 0, 0, 1);
+
+  for(let x = -8; x <= 8; x += 3) {
+    box(2.6, 1.0, 1.2, M.tool2, x, 0.5, -8.5); 
+  }
+  
+  const rows = [-4, -1, 2, 5];
+  const cols = [-5, 2, 9];
+  rows.forEach((z) => {
+    cols.forEach((x) => {
+      desk(x, z, 2.0); 
+    });
+  });
+
+  box(0.8, 0.8, 0.1, M.trim, 2, 3.5, -11.5); 
+
+  box(0.4, 3.0, 8, M.wall, 12, 1.5, -8);   
+  box(0.4, 3.0, 8, M.wall, 12, 1.5, 8);    
+
+  desk(16.5, 0, 3.5); 
+
+  box(0.8, 1.6, 0.8, M.tool, 19, 0.8, -4.5); 
+  box(0.5, 0.4, 0.5, M.tool2, 19, 1.2, -3.2); 
+
+  box(0.2, 1.8, 1.5, M.tool2, 13.5, 0.9, 0);
+
+  for(let x = 14; x <= 20; x += 1.5) {
+    box(1.2, 0.8, 1.0, M.desk, x, 0.4, -6.5); 
+    box(1.2, 0.9, 1.0, M.desk, x, 0.45, 6.5);  
+  }
+
+  nodes({
+    "entrance": [9, 9],            
+    "boss_seat": [-5, 5],          
+    "meeting_room": [16, 0],       
+    "pantry_corner": [19, -4.5]    
+  }, "entrance-meeting_room meeting_room-pantry_corner meeting_room-boss_seat");
+});
